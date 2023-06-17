@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { ColorRing } from "react-loader-spinner";
 
 export default function Weather(props) {
   function handleResponse(response) {
@@ -11,5 +12,15 @@ export default function Weather(props) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(handleResponse);
-  return <h1>Hello from Weather</h1>;
+  return (
+    <ColorRing
+      visible={true}
+      height="180"
+      width="180"
+      ariaLabel="blocks-loading"
+      wrapperStyle={{}}
+      wrapperClass="blocks-wrapper"
+      colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+    />
+  );
 }
